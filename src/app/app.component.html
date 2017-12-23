@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<!-- <div style="text-align:center">
   <h1>
     Welcome to {{title}}!
   </h1>
@@ -16,5 +16,97 @@
   <li>
     <h2><a target="_blank" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
-</ul>
+</ul> -->
+<!-- <div *ngIf="identity">
+  <h1>{{ title }}</h1>
+</div> -->
+<div *ngIf="identity" class="container">
+  <nav class="navbar navbar-light bg-light justify-content-between">
+    <a class="navbar-brand">SP</a>
+    <form class="form-inline">
+      <p class="navbar-text">Bienvenido {{identity.name}}</p>
+      <button (click)="logout()" class="btn btn-outline-success my-2 my-sm-0" type="button">Salir</button>
+    </form>
+  </nav>
+  <div class="row">
+    <div class="col-sm-12">Estas Logueado</div>
+  </div>
+</div>
 
+<div *ngIf="!identity" class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h1>Identificate</h1>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin(loginForm)" novalidate>
+        <h1>Iniciar Session</h1>
+        <div class="alert alert-danger" *ngIf="errorMessage">
+          {{errorMessage}}
+        </div>
+        <div class="form-group">
+          <label for="inputEmailLogin">Correo Electronico</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="Email" [ngClass]="{'is-invalid' : ((loginForm.controls.email.hasError('required') && loginForm.controls.email.touched) || (loginForm.controls.email.hasError('email') && loginForm.controls.email.touched))}">
+          <small class="invalid-feedback" *ngIf="loginForm.controls.email.hasError('required') && loginForm.controls.email.touched"> 
+            El Correo electronico es necesario
+          </small>
+          <small class="invalid-feedback" *ngIf="loginForm.controls.email.hasError('email') && loginForm.controls.email.touched"> 
+            El Correo electronico no tiene el formato correo@email.com
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="inputPasswordLogin">Password</label>
+          <input type="password" class="form-control" formControlName="password" placeholder="Password" [ngClass]="{'is-invalid' : ((loginForm.controls.password.hasError('required') && loginForm.controls.password.touched) || (loginForm.controls.password.hasError('minLength') && loginForm.controls.password.touched))}">
+          <small class="invalid-feedback" *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.touched"> 
+            La clave es necesaria
+          </small>
+          <small class="invalid-feedback" *ngIf="loginForm.controls.password.hasError('minLength') && loginForm.controls.password.touched"> 
+            La clave debe tener minimo 5 caracteres
+          </small>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Entrar</button>
+      </form>
+    </div>
+    <div class="col-sm">
+      <h1>Registrate</h1>
+      <div class="alert alert-warning" *ngIf="alertRegister">
+        {{alertRegister}}
+      </div>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister(registerForm)" novalidate>
+        <div class="form-group">
+          <label for="inputName">Nombre</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Nombre" [ngClass]="{'is-invalid' : (registerForm.controls.name.hasError('required') && registerForm.controls.name.touched)}">
+          <small class="invalid-feedback" *ngIf="registerForm.controls.name.hasError('required') && registerForm.controls.name.touched"> 
+            El nombre es requerido
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail">Correo Electronico</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="Correo Electronico" [ngClass]="{'is-invalid' : ((registerForm.controls.email.hasError('required') && registerForm.controls.email.touched) || (registerForm.controls.email.hasError('email') && registerForm.controls.email.touched))}">
+          <small class="invalid-feedback" *ngIf="registerForm.controls.email.hasError('required') && registerForm.controls.email.touched"> 
+            El Correo electronico es necesario
+          </small>
+          <small class="invalid-feedback" *ngIf="registerForm.controls.email.hasError('email') && registerForm.controls.email.touched"> 
+            El Correo electronico no tiene el formato correo@email.com
+          </small>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="inputPassword">Password</label>
+          <input type="password" class="form-control" formControlName="password" placeholder="Password" [ngClass]="{'is-invalid' : ((registerForm.controls.password.hasError('required') && registerForm.controls.password.touched) || (registerForm.controls.password.hasError('minLength') && registerForm.controls.password.touched))}">
+          <small class="invalid-feedback" *ngIf="registerForm.controls.password.hasError('required') && registerForm.controls.password.touched"> 
+            La clave es necesaria
+          </small>
+          <small class="invalid-feedback" *ngIf="registerForm.controls.password.hasError('minLength') && registerForm.controls.password.touched"> 
+            La clave debe tener minimo 5 caracteres
+          </small>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Registrar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p class="text-center">APP version {{ version }}</p>
+  <p class="text-center">
+    <a href="www.websoftmerida.com" target="_blank">develop by websoftmerida</a>
+  </p>
+</footer>
