@@ -44,6 +44,18 @@ export class UserService {
                 .map(res => res.json());
   }
 
+  update_user(user_update) {
+    const params = JSON.stringify(user_update);
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    });
+
+    return this._http
+                .put(this.url + 'update-user/' + user_update._id, params, {headers: headers})
+                .map(res => res.json());
+  }
+
   // verificar si existe alguna session en localStorage
   getIdentity() {
     const identity = JSON.parse(localStorage.getItem('identity'));

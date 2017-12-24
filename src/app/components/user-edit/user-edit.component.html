@@ -1,0 +1,42 @@
+<div class="row" *ngIf="identity">
+  <div class="col">
+    <h1>{{ title }}</h1>
+    <div class="alert alert-warning" *ngIf="alertUpdate">
+      {{alertUpdate}}
+    </div>
+    <form [formGroup]="userEditForm" (ngSubmit)="onSubmitUpdate(userEditForm)" novalidate>
+      <div class="form-group">
+        <label for="inputName">Nombre</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Nombre" [ngClass]="{'is-invalid' : (userEditForm.controls.name.hasError('required') && userEditForm.controls.name.touched)}">
+        <small class="invalid-feedback" *ngIf="userEditForm.controls.name.hasError('required') && userEditForm.controls.name.touched"> 
+          El nombre es requerido
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="inputSurname">Apellido</label>
+        <input type="text" class="form-control" formControlName="surname" placeholder="Apellido" [ngClass]="{'is-invalid' : (userEditForm.controls.surname.hasError('required') && userEditForm.controls.surname.touched)}">
+        <small class="invalid-feedback" *ngIf="userEditForm.controls.surname.hasError('required') && userEditForm.controls.surname.touched"> 
+          El apellido es requerido
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail">Correo Electronico</label>
+        <input type="email" class="form-control" formControlName="email" placeholder="Correo Electronico" [ngClass]="{'is-invalid' : ((userEditForm.controls.email.hasError('required') && userEditForm.controls.email.touched) || (userEditForm.controls.email.hasError('email') && userEditForm.controls.email.touched))}">
+        <small class="invalid-feedback" *ngIf="userEditForm.controls.email.hasError('required') && userEditForm.controls.email.touched"> 
+          El Correo electronico es necesario
+        </small>
+        <small class="invalid-feedback" *ngIf="userEditForm.controls.email.hasError('email') && userEditForm.controls.email.touched"> 
+          El Correo electronico no tiene el formato correo@email.com
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail">Sube tu foto</label>
+        <input type="file" class="form-control" name="image" placeholder="Subir imagen..." (change)="fileChangeEvent($event)">
+      </div>
+      <div class="image_for_edit" *ngIf="user.image && user.image != 'null'">
+        <img src="{{ url + 'get-image-user/' + user.image}}" alt="">
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="userEditForm.invalid">Actualizar</button>
+    </form>
+  </div>
+</div>

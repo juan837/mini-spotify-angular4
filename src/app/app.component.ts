@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
   public alertRegister;
   // toke storage
   public token;
+  public url: string;
 
   public loginForm: FormGroup;
   public registerForm: FormGroup;
@@ -48,6 +49,7 @@ export class AppComponent implements OnInit {
     // Obtener informacion del usuario, si se guardo en el localStorage
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.url = GLOBAL.url;
   }
 
   onSubmitLogin (form: FormGroup) {
