@@ -8,10 +8,12 @@ import { AppComponent } from './app.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 import { routing, appRoutingProviders } from './app.routing';
+import { ArtistListComponent } from './components/artist-list/artist-list.component';
 @NgModule({
   declarations: [
     AppComponent,
-    UserEditComponent
+    UserEditComponent,
+    ArtistListComponent
   ],
   imports: [
     BrowserModule,
