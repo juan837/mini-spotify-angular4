@@ -9,11 +9,14 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 import { routing, appRoutingProviders } from './app.routing';
 import { ArtistListComponent } from './components/artist-list/artist-list.component';
+import { HomeComponent } from './components/home/home.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     UserEditComponent,
-    ArtistListComponent
+    ArtistListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

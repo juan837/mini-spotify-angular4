@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { GLOBAL } from '../../services/global';
-import { UserService } from "../../services/user.service";
+import { UserService } from '../../services/user.service';
 import { Artist } from '../../models/artist';
 
 @Component({
@@ -26,6 +26,8 @@ export class ArtistListComponent implements OnInit {
       this.identity = this._userService.getIdentity();
       this.token = this._userService.getToken();
       this.url = GLOBAL.url;
+
+      console.log('Identity ', this.identity);
     }
 
   ngOnInit() {
