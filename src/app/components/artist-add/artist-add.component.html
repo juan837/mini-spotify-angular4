@@ -51,17 +51,16 @@
   </div>
   <!-- cargar informacion -->
   <div *ngIf="is_edit">
-    <div class="image_for_edit" *ngIf="artist.image != 'null'">
-      <img src="{{url + 'get-image-artist/' + artist.image }}">
+    <div class="image_for_edit" *ngIf="artist.image && artist.image != 'null'">
+      <img class="image_edit_artist" src="{{url + 'get-image-artist/' + artist.image }}">
     </div>
     <div class="form-group">
       <label for="inputNameArtist">Subir una Imagen</label>
       <input 
         type="file" 
-        class="form-control" 
-        formControlName="imagen" 
+        class="form-control"
         placeholder="Subir imagen..."
-        (change)="fileChangeEvent()"  
+        (change)="fileChangeEvent($event)"  
       >
     </div>
   </div>

@@ -12,7 +12,7 @@ import { ArtistService } from '../../services/artist.service';
 @Component({
   selector: 'app-artist-add',
   templateUrl: './artist-add.component.html',
-  styleUrls: ['./artist-add.component.css'],
+  styleUrls: ['./artist-add.component.sass'],
   providers: [ArtistService, UserService]
 })
 export class ArtistAddComponent implements OnInit {

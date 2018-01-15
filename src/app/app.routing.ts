@@ -12,11 +12,13 @@ import { HomeComponent } from './components/home/home.component';
 
 // import artist
 import { ArtistAddComponent } from './components/artist-add/artist-add.component';
+import { ArtistEditComponent } from './components/artist-edit/artist-edit.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'artist/new', component: ArtistAddComponent},
   {path: 'artists/:page', component: ArtistListComponent},
+  {path: 'edit-artist/:id', component: ArtistEditComponent},
   {path: 'my-profile', component: UserEditComponent},
   {path: '**', component: HomeComponent}
 ];
