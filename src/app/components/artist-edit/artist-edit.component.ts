@@ -46,6 +46,8 @@ export class ArtistEditComponent implements OnInit {
     }
 
   ngOnInit() {
+    console.log('Componente artist-edit');
+
     this.artistForm = this.fb.group({
       name: [this.artist.name, [Validators.required]],
       description: [this.artist.description, [Validators.required]],

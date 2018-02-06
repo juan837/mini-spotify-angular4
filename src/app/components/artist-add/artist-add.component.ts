@@ -50,6 +50,8 @@ export class ArtistAddComponent implements OnInit {
       description: [this.artist.description, [Validators.required]],
       // image: [this.artist.image, [Validators.required]],
     });
+
+    console.log('Componente artist-add');
   }
 
   onSubmit(form: FormGroup) {
@@ -65,7 +67,7 @@ export class ArtistAddComponent implements OnInit {
           } else {
             this.alertMessage = 'El Artista se ha creado correctamente';
             this.artist = response.artist;
-            // this._router.navigate(['/edit-artist'], response.artist._id);
+            this._router.navigate(['/edit-artist', response.artist._id]);
           }
         },
         error => {

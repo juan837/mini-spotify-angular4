@@ -1,68 +1,62 @@
-<h1>{{ titulo }}</h1>
+<div *ngIf="identity && identity.role == 'ROLE_ADMIN'">
+  <h1>{{ titulo }}</h1>
 
-<div *ngIf="alertMessage">
-  <div class="alet alert-info">
-    {{ alertMessage }}
+  <div *ngIf="alertMessage">
+    <div class="alet alert-info">
+      {{ alertMessage }}
+    </div>
   </div>
-</div>
 
-<form [formGroup]="artistForm" (ngSubmit)="onSubmit(artistForm)" novalidate>
-  <div class="form-group">
-    <label for="inputNameArtist">Nombre</label>
-    <input 
-      type="text" 
-      class="form-control" 
-      formControlName="name" 
-      placeholder="Nombre" 
-      [ngClass]="{'is-invalid' : ((artistForm.controls.name.hasError('required') && artistForm.controls.name.touched) || (artistForm.controls.name.hasError('email') && artistForm.controls.name.touched))}">
-    <small 
-      class="invalid-feedback" 
-      *ngIf="artistForm.controls.name.hasError('required') && artistForm.controls.name.touched"> 
-      El nombre es necesario
-    </small>
-  </div>
-  <!-- <div class="form-group">
-    <label for="inputNameArtist">Apellido</label>
-    <input 
-      type="text" 
-      class="form-control" 
-      formControlName="surname" 
-      placeholder="Apellido" 
-      [ngClass]="{'is-invalid' : ((artistForm.controls.surname.hasError('required') && artistForm.controls.surname.touched) || (artistForm.controls.surname.hasError('email') && artistForm.controls.surname.touched))}">
-    <small 
-      class="invalid-feedback" 
-      *ngIf="artistForm.controls.surname.hasError('required') && artistForm.controls.surname.touched"> 
-      El Apellido es necesario
-    </small>
-  </div> -->
-  <div class="form-group">
-    <label for="inputNameArtist">Descripcion</label>
-    <input 
-      type="text" 
-      class="form-control" 
-      formControlName="description" 
-      placeholder="Descripcion" 
-      [ngClass]="{'is-invalid' : ((artistForm.controls.description.hasError('required') && artistForm.controls.description.touched) || (artistForm.controls.description.hasError('email') && artistForm.controls.description.touched))}">
-    <small 
-      class="invalid-feedback" 
-      *ngIf="artistForm.controls.description.hasError('required') && artistForm.controls.description.touched"> 
-      La Descripcion es necesaria
-    </small>
-  </div>
-  <!-- cargar informacion -->
-  <div *ngIf="is_edit">
-    <div class="image_for_edit" *ngIf="artist.image && artist.image != 'null'">
-      <img class="image_edit_artist" src="{{url + 'get-image-artist/' + artist.image }}">
+  <form [formGroup]="artistForm" (ngSubmit)="onSubmit(artistForm)" novalidate>
+    <div class="form-group">
+      <label for="inputNameArtist">Nombre</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        formControlName="name" 
+        placeholder="Nombre" 
+        [ngClass]="{'is-invalid' : ((artistForm.controls.name.hasError('required') && artistForm.controls.name.touched) || (artistForm.controls.name.hasError('email') && artistForm.controls.name.touched))}">
+      <small 
+        class="invalid-feedback" 
+        *ngIf="artistForm.controls.name.hasError('required') && artistForm.controls.name.touched"> 
+        El nombre es necesario
+      </small>
     </div>
     <div class="form-group">
-      <label for="inputNameArtist">Subir una Imagen</label>
+      <label for="inputNameArtist">Descripcion</label>
       <input 
-        type="file" 
-        class="form-control"
-        placeholder="Subir imagen..."
-        (change)="fileChangeEvent($event)"  
-      >
+        type="text" 
+        class="form-control" 
+        formControlName="description" 
+        placeholder="Descripcion" 
+        [ngClass]="{'is-invalid' : ((artistForm.controls.description.hasError('required') && artistForm.controls.description.touched) || (artistForm.controls.description.hasError('email') && artistForm.controls.description.touched))}">
+      <small 
+        class="invalid-feedback" 
+        *ngIf="artistForm.controls.description.hasError('required') && artistForm.controls.description.touched"> 
+        La Descripcion es necesaria
+      </small>
     </div>
+    <!-- cargar informacion -->
+    <div *ngIf="is_edit">
+      <div class="image_for_edit" *ngIf="artist.image && artist.image != 'null'">
+        <img class="image_edit_artist" src="{{url + 'get-image-artist/' + artist.image }}">
+      </div>
+      <div class="form-group">
+        <label for="inputNameArtist">Subir una Imagen</label>
+        <input 
+          type="file" 
+          class="form-control"
+          placeholder="Subir imagen..."
+          (change)="fileChangeEvent($event)"  
+        >
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="artistForm.invalid">Guardar</button>
+  </form>
+</div>
+
+<div *ngIf="!identity || identity.role != 'ROLE_ADMIN'">
+  <div class="alet alert-info">
+    No tienes acceso a esta parte
   </div>
-  <button type="submit" class="btn btn-primary" [disabled]="artistForm.invalid">Guardar</button>
-</form>
+</div>
