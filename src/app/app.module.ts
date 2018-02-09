@@ -12,7 +12,10 @@ import { ArtistListComponent } from './components/artist-list/artist-list.compon
 import { HomeComponent } from './components/home/home.component';
 import { ArtistAddComponent } from './components/artist-add/artist-add.component';
 import { ArtistEditComponent } from './components/artist-edit/artist-edit.component';
+import { ArtistDetailComponent } from './components/artist-detail/artist-detail.component';
 
+// Boostrap 4 for Angular 5
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,9 +24,11 @@ import { ArtistEditComponent } from './components/artist-edit/artist-edit.compon
     ArtistListComponent,
     HomeComponent,
     ArtistAddComponent,
-    ArtistEditComponent
+    ArtistEditComponent,
+    ArtistDetailComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

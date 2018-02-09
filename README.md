@@ -1,6 +1,8 @@
 # Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
+
+And Angular 5
 
 ## Development server
 

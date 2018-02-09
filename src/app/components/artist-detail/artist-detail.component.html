@@ -1,0 +1,19 @@
+<div class="row" *ngIf="artist" >
+  <div class="col-sm-12 container-artist">
+    <div class="image-artist">
+        <img src="{{ url + 'get-image-artist/' + artist.image }}" alt="Card image cap">
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-12">
+          <h4>{{artist.name}}</h4>
+          <p class="text-secondary">{{artist.name}}</p>
+          <a class="btn btn-primary float-left" [routerLink]="['/edit-artist', artist._id]">Añadir Album</a>
+        </div>
+    </div>
+    
+    <div class="row" *ngIf="albums" >
+      Lista de Albums
+    </div>
+  </div>
+</div>

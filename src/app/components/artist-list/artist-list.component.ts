@@ -23,6 +23,7 @@ export class ArtistListComponent implements OnInit {
   public artists$: Observable<Artist[]>;
   public next_page;
   public prev_page;
+  public confirm;
 
   constructor(
     private _route: ActivatedRoute,
@@ -79,6 +80,16 @@ export class ArtistListComponent implements OnInit {
         }
       );
     });
+  }
+
+  onDeleteConfirm(id) {
+    this.confirm = id;
+  }
+  onCancelArtist() {
+    this.confirm = null;
+  }
+  onConfirmArtist() {
+    
   }
 
 }
