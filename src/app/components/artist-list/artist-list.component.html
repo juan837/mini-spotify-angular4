@@ -18,33 +18,38 @@
 </div>
 
 <div class="row" *ngIf="identity">
-  
-  <div class="card-deck">
-      <div class="card" *ngFor="let artist of artists">
-        <div class="card-header">
-          <a [routerLink]="['/artist', artist._id]"> {{ artist.name }}</a>
-        </div>
-        <img class="card-img-top" src="{{ url + 'get-image-artist/' + artist.image }}" alt="Card image cap">
-        <div class="card-body">
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary float-left" [routerLink]="['/edit-artist', artist._id]">E</a>
-          <a (click)="onDeleteConfirm(artist._id)" class="btn btn-danger float-right">B</a>
-        </div>
-      </div>
-  </div>
+    <div class="card-container col-sm-4" *ngFor="let artist of artists">
+        <div class="card">
+            <div class="card-header">
+              <a [routerLink]="['/artist', artist._id]"> {{ artist.name }}</a>
+            </div>
+            <img class="card-img-top" src="{{ url + 'get-image-artist/' + artist.image }}" alt="Card image cap">
+            <div class="card-body">
+            </div>
+            <div class="card-footer">
+              <div class="edit-buttons">
+                  <a href="#" class="btn btn-primary float-left" [routerLink]="['/edit-artist', artist._id]">Editar</a>
+                  <a (click)="onDeleteConfirm(artist._id)" class="btn btn-danger float-right">Borrar</a>
+              </div>
+              <div class="confirm-buttons" *ngIf="confirmDelete == artist._id">
+                  <a (click)="onDeleteArtist(artist._id)" class="btn btn-danger">Eliminar</a>
+                  <a (click)="onCancelArtist()" class="btn btn-primary">Cancelar</a>
+              </div>
+            </div>
+          </div>
+    </div>
 </div>
 
-<div class="row" *ngIf="confirm">
+<!-- <div class="row" *ngIf="confirm">
   <div class="col-sm-12">
       <p class="text-danger">¿Desea eliminar al artista?</p>
   </div>
   
   <a (click)="onConfirmArtist(artist._id)" class="btn btn-primary">Confirmar</a>
   <a (click)="onCancelArtist()" class="btn btn-default">Cancelar</a>
-</div>
+</div> -->
 
-<ng-template #content let-c="close" let-d="dismiss">
+<!-- <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title">Modal title</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -57,5 +62,5 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
     </div>
-  </ng-template>
+  </ng-template> -->
 

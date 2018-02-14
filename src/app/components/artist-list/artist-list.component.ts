@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-artist-list',
   templateUrl: './artist-list.component.html',
-  styleUrls: ['./artist-list.component.css'],
+  styleUrls: ['./artist-list.component.sass'],
   providers: [UserService, ArtistService]
 })
 export class ArtistListComponent implements OnInit {
@@ -23,7 +23,7 @@ export class ArtistListComponent implements OnInit {
   public artists$: Observable<Artist[]>;
   public next_page;
   public prev_page;
-  public confirm;
+  public confirmDelete;
 
   constructor(
     private _route: ActivatedRoute,
@@ -83,13 +83,33 @@ export class ArtistListComponent implements OnInit {
   }
 
   onDeleteConfirm(id) {
-    this.confirm = id;
+    this.confirmDelete = id;
   }
+  onDeleteArtist(id) {
+    this.confirmDelete = null;
+
+    this._artistService.deleteArtist(this.token, id).subscribe(
+      response => {
+        console.log('Respuesta eliminar ', response);
+        if (!response.artist) {
+            alert('Error en el servidor');
+        }
+        this.getArtists();
+      },
+      error => {
+        const errorMessage = <any>error;
+
+        if (errorMessage != null) {
+          const body = JSON.parse(error._body);
+
+          console.log(error);
+        }
+      }
+    );
+  }
+
   onCancelArtist() {
-    this.confirm = null;
-  }
-  onConfirmArtist() {
-    
+    this.confirmDelete = null;
   }
 
 }
