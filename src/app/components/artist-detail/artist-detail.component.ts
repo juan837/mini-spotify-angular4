@@ -22,7 +22,7 @@ export class ArtistDetailComponent implements OnInit {
   public url: string;
   public alertMessage;
 
-  public artistForm: FormGroup;
+  // public artistForm: FormGroup;
 
   public filesToUpload: Array<File>;
 
@@ -53,11 +53,11 @@ export class ArtistDetailComponent implements OnInit {
           } else {
             this.artist = response.artist;
             // rellenar el Formulario con el artista encontrado
-            this.artistForm.setValue({
-              name: this.artist.name,
-              description: this.artist.description,
-              image: this.artist.image
-            });
+            // this.artistForm.setValue({
+            //   name: this.artist.name,
+            //   description: this.artist.description,
+            //   image: this.artist.image
+            // });
           }
         },
         error => {

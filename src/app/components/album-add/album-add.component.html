@@ -1,0 +1,78 @@
+<div class="col-md-6" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
+    <h1>{{ titulo }}</h1>
+  
+    <div *ngIf="alertMessage">
+      <div class="alet alert-info">
+        {{ alertMessage }}
+      </div>
+    </div>
+  
+    <form [formGroup]="albumForm" (ngSubmit)="onSubmit(albumForm)" novalidate>
+      <div class="form-group">
+        <label for="inputNameArtist">Nombre</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          formControlName="title" 
+          placeholder="Titulo del Album" 
+          [ngClass]="{'is-invalid' : (albumForm.controls.title.hasError('required') && albumForm.controls.title.touched)}">
+        <small 
+          class="invalid-feedback" 
+          *ngIf="albumForm.controls.title.hasError('required') && albumForm.controls.title.touched"> 
+          El titulo es necesario
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="inputNameArtist">Descripcion</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          formControlName="description" 
+          placeholder="Descripcion" 
+          [ngClass]="{'is-invalid' : (albumForm.controls.description.hasError('required') && albumForm.controls.description.touched)}">
+        <small 
+          class="invalid-feedback" 
+          *ngIf="albumForm.controls.description.hasError('required') && albumForm.controls.description.touched"> 
+          La Descripcion es necesaria
+        </small>
+      </div>
+      <div class="form-group">
+          <label for="inputNameArtist">Año</label>
+          <input 
+            type="number" 
+            class="form-control" 
+            formControlName="year" 
+            placeholder="Año" 
+            [ngClass]="{'is-invalid' : (albumForm.controls.year.hasError('required') && albumForm.controls.year.touched)}">
+          <small 
+            class="invalid-feedback" 
+            *ngIf="albumForm.controls.year.hasError('required') && albumForm.controls.year.touched"> 
+            La Año es necesaria
+          </small>
+        </div>
+      <!-- cargar informacion -->
+      <div *ngIf="is_edit">
+        <p></p>
+        <div class="image_for_edit" *ngIf="album.image && album.image != 'null'">
+          <img class="image_edit_album" src="{{url + 'get-image-album/' + album.image }}">
+        </div>
+        <div class="form-group">
+          <label for="inputNameArtist">Subir una Imagen del Album</label>
+          <input 
+            type="file" 
+            class="form-control"
+            placeholder="Subir imagen..."
+            (change)="fileChangeEvent($event)"  
+          >
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="albumForm.invalid">Guardar</button>
+    </form>
+  </div>
+  
+  <div *ngIf="!identity || identity.role != 'ROLE_ADMIN'">
+    <div class="alet alert-info">
+      No tienes acceso a esta parte
+    </div>
+  </div>
+
